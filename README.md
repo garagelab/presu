@@ -1,5 +1,5 @@
-Visualización de Ejecución Presupuestaria
-=========================================
+Visualización de Reasignaciones Presupuestarias
+===============================================
 
 Visualización de las reasignaciones presupuestarias a los Servicios Administrativos Financieros del Estado
 
