@@ -1,11 +1,10 @@
 require 'rake'
 require 'rake/tasklib'
 
-require 'model'
+require_relative './model'
 require 'dm-migrations'
 
-
-require 'fastercsv'
+require 'csv'
 
 namespace :presu do
   desc "migrate the db"
@@ -20,7 +19,8 @@ namespace :presu do
 
   desc "import data"
   task :import do
-    FasterCSV.foreach(ENV['DATA'] || 'data.csv', :headers => :first_row) do |row|
+    CSV.foreach(ENV['DATA'] || 'data.csv', :headers => :first_row) do |row|
+
       j = Jurisdiccion.first_or_create(:id => row['JURISDICCION #'], :nombre => row['JURISDICCION'])
 
       c = Caracter.first_or_create(:id => row['CARACTER #'], :nombre => row['CARACTER'])
@@ -51,5 +51,3 @@ namespace :presu do
   end
 
 end
-
-

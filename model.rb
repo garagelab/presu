@@ -10,7 +10,7 @@ class Jurisdiccion
   property :nombre,   String, :length => 128
 
   has n, :servicios
-  
+
 end
 
 class Caracter
@@ -32,12 +32,12 @@ class Servicio
   belongs_to :caracter
 
   def variacion
-    total_credito_inicial = Registro.sum(:credito, :conditions => ['servicio_id = ? AND fecha = ?', 
-                                                                   id, 
+    total_credito_inicial = Registro.sum(:credito, :conditions => ['servicio_id = ? AND fecha = ?',
+                                                                   id,
                                                                    Registro.first(:servicio => self, :order => [:fecha.asc]).fecha])
 
-    total_credito = Registro.sum(:credito, :conditions => ['servicio_id = ? AND fecha = ?', 
-                                                           id, 
+    total_credito = Registro.sum(:credito, :conditions => ['servicio_id = ? AND fecha = ?',
+                                                           id,
                                                            Registro.last(:servicio => self, :order => [:fecha.asc]).fecha])
 
     return total_credito - total_credito_inicial
@@ -70,3 +70,4 @@ class Registro
 
 end
 
+DataMapper.finalize
